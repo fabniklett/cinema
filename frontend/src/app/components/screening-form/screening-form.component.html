@@ -1,0 +1,78 @@
+<form [formGroup]="screeningForm">
+
+  <div class="form-group">
+    <label for="title">TITLE: </label>
+    <input type="text"
+           class="form-control"
+           id="title"
+           placeholder="Title"
+           formControlName="title"
+           [ngClass]="{'is-invalid': (screeningForm.get('title')?.invalid && screeningForm.get('title')?.touched)
+    || (screeningForm.get('title')?.errors?.['serverError'])}">
+
+    <small *ngIf="screeningForm.get('title')?.invalid && screeningForm.get('title')?.touched
+  && !screeningForm.get('title')?.errors?.['serverError']">
+      Please enter a valid product name!
+    </small>
+    <small
+      *ngIf="screeningForm.get('title')?.errors?.['serverError']">
+      {{screeningForm.get('title')?.errors?.['serverError']}}
+    </small>
+  </div>
+
+  <div class="form-group">
+    <label for="screening-date">SCREENING DATE: </label>
+    <input type="datetime-local"
+           class="form-control"
+           id="screening-date"
+           placeholder="Screening date"
+           formControlName="screeningDate"
+           [ngClass]="{'is-invalid': (screeningForm.get('screeningDate')?.invalid && screeningForm.get('screeningDate')?.touched)
+    || (screeningForm.get('screeningDate')?.errors?.['serverError'])}"
+           >
+
+    <small *ngIf="screeningForm.get('screeningDate')?.invalid && screeningForm.get('screeningDate')?.touched
+  && !screeningForm.get('screeningDate')?.errors?.['serverError']">
+      Please enter a valid date and time!
+    </small>
+    <small
+      *ngIf="screeningForm.get('screeningDate')?.errors?.['serverError']">
+      {{screeningForm.get('screeningDate')?.errors?.['serverError']}}
+    </small>
+
+  </div>
+
+  <div class="form-group">
+    <label for="total-seats">TOTAL SEATS: </label>
+    <input type="number"
+           class="form-control"
+           id="total-seats"
+           placeholder="Total seats"
+           formControlName="totalSeat"
+           [ngClass]="{'is-invalid': (screeningForm.get('totalSeat')?.invalid && screeningForm.get('totalSeat')?.touched)
+    || (screeningForm.get('totalSeat')?.errors?.['serverError'])}">
+
+    <small *ngIf="screeningForm.get('totalSeat')?.invalid && screeningForm.get('totalSeat')?.touched
+  && !screeningForm.get('totalSeat')?.errors?.['serverError']">
+      Please enter a valid seat number for the screening!
+    </small>
+    <small
+      *ngIf="screeningForm.get('totalSeat')?.errors?.['serverError']">
+      {{screeningForm.get('totalSeat')?.errors?.['serverError']}}
+    </small>
+
+  </div>
+
+  <div class="form-group">
+    <label for="picture-url">PICTURE URL: </label>
+    <input type="text"
+           class="form-control"
+           id="picture-url"
+           placeholder="Picture url"
+           formControlName="pictureUrl"
+          >
+  </div>
+
+  <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+
+</form>

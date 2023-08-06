@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pm.practice.cinema.dto.incoming.ReservationCreateDetails;
 import pm.practice.cinema.dto.incoming.ScreeningCommand;
+import pm.practice.cinema.dto.outgoing.MovieSummaryDetails;
 import pm.practice.cinema.dto.outgoing.ScreeningListItem;
+import pm.practice.cinema.dto.outgoing.ScreeningListItemForReservationForm;
 import pm.practice.cinema.service.ScreeningService;
 
 import java.util.List;
@@ -37,4 +40,20 @@ public class ScreeningController {
         logger.info("Screenings page requested");
         return new ResponseEntity<>(listOfScreenings, HttpStatus.OK);
     }
+
+    @GetMapping("/listForReservations")
+    public ResponseEntity<List<ScreeningListItemForReservationForm>> listScreeningsForReservationForm () {
+        List<ScreeningListItemForReservationForm> listOfScreenings = screeningService.listScreeningsForReservation();
+        logger.info("Screenings page requested");
+        return new ResponseEntity<>(listOfScreenings, HttpStatus.OK);
+    }
+
+
+    @GetMapping("/movies")
+    public ResponseEntity<List<MovieSummaryDetails>> listMoviesWithDetails () {
+        List<MovieSummaryDetails> summaryDetails = screeningService.listMovieSummaries();
+        logger.info("Movie summary page requested");
+        return new ResponseEntity<>(summaryDetails,HttpStatus.OK);
+    }
+
 }

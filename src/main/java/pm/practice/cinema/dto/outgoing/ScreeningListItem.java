@@ -3,6 +3,7 @@ package pm.practice.cinema.dto.outgoing;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pm.practice.cinema.domain.Reservation;
 import pm.practice.cinema.domain.Screening;
 
 import java.time.LocalDateTime;
@@ -21,6 +22,7 @@ public class ScreeningListItem {
         this.title = screening.getTitle();
         this.screeningDate = screening.getScreeningDate();
         this.totalSeats = screening.getTotalSeat();
-        this.freeSeats = 0;
+        this.freeSeats = this.totalSeats - screening.getReservations().stream().map(Reservation::getNumberOfSeats).mapToInt(i -> i).sum();
     }
+
 }

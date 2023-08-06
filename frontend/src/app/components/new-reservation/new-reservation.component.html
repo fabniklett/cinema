@@ -1,0 +1,64 @@
+<form [formGroup]="reservationForm">
+
+  <div class="form-group">
+    <label for="name">Name: </label>
+    <input type="text"
+           class="form-control"
+           id="name"
+           placeholder="Your name"
+           formControlName="name"
+    [ngClass]="{'is-invalid': (reservationForm.get('name')?.invalid && reservationForm.get('name')?.touched)
+    || (reservationForm.get('name')?.errors?.['serverError'])}">
+
+    <small *ngIf="reservationForm.get('name')?.invalid && reservationForm.get('name')?.touched
+  && !reservationForm.get('name')?.errors?.['serverError']">
+      Please enter a valid product name!
+    </small>
+    <small
+      *ngIf="reservationForm.get('name')?.errors?.['serverError']">
+      {{reservationForm.get('name')?.errors?.['serverError']}}
+    </small>
+  </div>
+
+  <div class="form-group">
+    <label for="numberOfSeats">NUMBER OF SEATS: </label>
+    <input type="number"
+           class="form-control"
+           id="numberOfSeats"
+           placeholder="Number of seats"
+           formControlName="numberOfSeats"
+           [ngClass]="{'is-invalid': (reservationForm.get('numberOfSeats')?.invalid && reservationForm.get('numberOfSeats')?.touched)
+    || (reservationForm.get('numberOfSeats')?.errors?.['serverError'])}"
+    >
+
+    <small *ngIf="reservationForm.get('numberOfSeats')?.invalid && reservationForm.get('numberOfSeats')?.touched
+  && !reservationForm.get('numberOfSeats')?.errors?.['serverError']">
+      Please enter a valid date and time!
+    </small>
+    <small
+      *ngIf="reservationForm.get('numberOfSeats')?.errors?.['serverError']">
+      {{reservationForm.get('numberOfSeats')?.errors?.['serverError']}}
+    </small>
+
+  </div>
+
+  <div class="form-group">
+    <label
+      for="screeningId"
+      class="form-control-label"
+    >Choose your screening</label>
+    <select
+      id="screeningId"
+      formControlName="screeningId"
+      name="screeningId"
+      class="form-control">
+      <option *ngFor="let screening of screenings"
+              value="{{screening.id}}">{{screening.title}}, {{screening.screeningTime}}</option> >
+    </select>
+
+  </div>
+
+  <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+
+</form>
+

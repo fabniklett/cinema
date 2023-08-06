@@ -1,0 +1,24 @@
+<div class="card bg-body-tertiary">
+  <div class="card-body text-center d-flex flex-column">
+    <h5 class="text-center mb-3">Reservations</h5>
+    <hr>
+    <table class="table mb-5">
+      <thead>
+      <tr class="table-success">
+        <th scope="col">Title</th>
+        <th scope="col">Number of screenings</th>
+        <th scope="col">Tickets sold</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let movie of movies" >
+        <td>{{movie.title}}</td>
+        <td>{{movie.numberOfScreenings}}</td>
+        <td>{{movie.ticketsSold}}</td>
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+

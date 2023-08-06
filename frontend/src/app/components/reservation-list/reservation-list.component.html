@@ -1,0 +1,25 @@
+<div class="card bg-body-tertiary">
+  <div class="card-body text-center d-flex flex-column">
+    <h5 class="text-center mb-3">Reservations</h5>
+    <hr>
+    <table class="table mb-5">
+      <thead>
+      <tr class="table-success">
+        <th scope="col">Name</th>
+        <th scope="col">Title</th>
+        <th scope="col">Number of booked seats</th>
+        <th scope="col">Time of screening</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let reservation of reservations" >
+        <td>{{reservation.name}}</td>
+        <td>{{reservation.title}}</td>
+        <td>{{reservation.numberOfSeats}}</td>
+        <td>{{reservation.timeOfScreening}}</td>
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
